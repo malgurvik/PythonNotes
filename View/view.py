@@ -35,17 +35,17 @@ def sort_var(notes: list[list[str]]) -> list[list[str]]:
 def show_all_notes(notes: list[list[str]]):
     max_size = list(map(lambda x: len(max(x, key=len)), list(zip(*notes))))
     if notes:
-        print('\n' + '=' * (sum(max_size) - max_size[2] + 7))
-        print(f'{"ID":>3}  {"Заголовок":<{max_size[1]}}  {"Текст":<{max_size[3]}}')
+        print('\n' + '=' * (sum(max_size) - max_size[3] + 7))
+        print(f'{"ID":>3}  {"Заголовок":<{max_size[1]}}  {"Текст":<{max_size[2]}}')
         for note in notes:
-            print(f'{note[0]:>3}. {note[1]:<{max_size[1]}}  {note[2]:<{max_size[3]}}')
-        print('=' * (sum(max_size) - max_size[2] + 7) + '\n')
+            print(f'{note[0]:>3}. {note[1]:<{max_size[1]}}  {note[2]:<{max_size[2]}}')
+        print('=' * (sum(max_size) - max_size[3] + 7) + '\n')
 
 
 def show_note(notes: list[list[str]]) -> list[str]:
     show_all_notes(notes)
     choice = int(input("Введите ID заметки: "))
-    if 0 < int(choice) < len(notes) - 1:
+    if 0 < int(choice) <= len(notes):
         for note in notes:
             if choice == int(note[0]):
                 print('=' * (len(note[1]) + len(note[2]) + len(note[3]) + 5))
